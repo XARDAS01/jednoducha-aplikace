@@ -27,7 +27,7 @@ public class TokenController {
             tokenRepository.delete(userToken);
             return new MessageResponse("ok", 200);
         }
-        catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("getAll")
@@ -35,6 +35,6 @@ public class TokenController {
         try {
             ArrayList<Token> tokens = tokenRepository.findAll();
             return new MessageResponse("ok", 200, tokenRepository.findAll());
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 }

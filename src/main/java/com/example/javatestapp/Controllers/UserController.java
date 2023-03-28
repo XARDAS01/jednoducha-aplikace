@@ -28,7 +28,7 @@ public class UserController {
             userRepository.delete(user);
             return new MessageResponse("ok", 200);
         }
-        catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("/getByUid")
@@ -38,7 +38,7 @@ public class UserController {
             User user = userRepository.findByUid(uid);
             return new MessageResponse("ok", 200, user);
         }
-        catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("/getByToken")
@@ -48,7 +48,7 @@ public class UserController {
             User user = userRepository.findByUid(tokenRepository.findByToken(token).getUid());
             return new MessageResponse("ok", 200, user);
         }
-        catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("/getAll")
@@ -57,6 +57,6 @@ public class UserController {
             ArrayList<User> users = userRepository.findAll();
             return new MessageResponse("ok", 200, users);
         }
-        catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 }

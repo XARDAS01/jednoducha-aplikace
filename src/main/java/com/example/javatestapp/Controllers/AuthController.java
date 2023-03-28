@@ -33,9 +33,9 @@ public class AuthController {
             Token token = new Token(user.getUid());
             tokenRepository.save(token);
 
-            return new MessageResponse("User registered", 200, token);
+            return new MessageResponse("User registered", 201, token);
         }
-        catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @PostMapping("/login")
@@ -51,6 +51,6 @@ public class AuthController {
 
                 return new MessageResponse("ok", 200, token);
             } else {  return new MessageResponse("password is not correct", 400); }
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 }

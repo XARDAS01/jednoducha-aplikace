@@ -34,8 +34,8 @@ public class BookController {
                     tokenRepository.findByToken(bookAddRequest.getToken()).getUid()
             );
             bookRepository.save(book);
-            return new MessageResponse("ok", 200, book);
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+            return new MessageResponse("ok", 201, book);
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @PostMapping("/edit")
@@ -49,8 +49,8 @@ public class BookController {
             book.setName(bookAddRequest.getName());
             book.setIsbn(bookAddRequest.getIsbn());
             bookRepository.save(book);
-            return new MessageResponse("ok", 200, book);
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+            return new MessageResponse("ok", 201, book);
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("/getByName")
@@ -61,7 +61,7 @@ public class BookController {
             if (tokenRepository.findByToken(token).getUid().equals(bookRepository.findByName(name).getAuthorUid())) { return new MessageResponse("User not the same that book author", 400); }
 
             return new MessageResponse("ok", 200, bookRepository.findByName(name));
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("/getAllByUid")
@@ -72,7 +72,7 @@ public class BookController {
             Token userToken = tokenRepository.findByToken(token);
             ArrayList<Book> books = bookRepository.findAllByAuthorUid(userToken.getUid());
             return new MessageResponse("ok", 200, books);
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @GetMapping("/getAll")
@@ -80,7 +80,7 @@ public class BookController {
         try {
             ArrayList<Book> books = bookRepository.findAll();
             return new MessageResponse("ok", 200, books);
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @DeleteMapping("/delete")
@@ -92,6 +92,6 @@ public class BookController {
 
             bookRepository.delete(bookRepository.findById(bookId));
             return new MessageResponse("ok", 200);
-        } catch (Exception e) { return new MessageResponse(e.toString(), 400); }
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 }
