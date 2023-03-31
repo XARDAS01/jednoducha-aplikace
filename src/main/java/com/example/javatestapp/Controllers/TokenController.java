@@ -1,13 +1,18 @@
 package com.example.javatestapp.Controllers;
 
+import com.example.javatestapp.Models.Book;
 import com.example.javatestapp.Models.Token;
 import com.example.javatestapp.Payloads.Responses.MessageResponse;
 import com.example.javatestapp.Repositories.TokenRepository;
 import com.example.javatestapp.Repositories.UserRepository;
+import com.example.javatestapp.Services.CsvExportService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -36,5 +41,11 @@ public class TokenController {
             ArrayList<Token> tokens = tokenRepository.findAll();
             return new MessageResponse("ok", 200, tokenRepository.findAll());
         } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
+    }
+
+    @RequestMapping(path = "/export")
+    public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
+        List<Token> tokens = tokenRepository.findAll();
+        CsvExportService.exportTokens(servletResponse, tokens, "tokens");
     }
 }

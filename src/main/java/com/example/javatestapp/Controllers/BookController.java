@@ -6,10 +6,14 @@ import com.example.javatestapp.Payloads.Requests.BookAddRequest;
 import com.example.javatestapp.Payloads.Responses.MessageResponse;
 import com.example.javatestapp.Repositories.BookRepository;
 import com.example.javatestapp.Repositories.TokenRepository;
+import com.example.javatestapp.Services.CsvExportService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -93,5 +97,11 @@ public class BookController {
             bookRepository.delete(bookRepository.findById(bookId));
             return new MessageResponse("ok", 200);
         } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
+    }
+
+    @RequestMapping(path = "/export")
+    public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
+        List<Book> books = bookRepository.findAll();
+        CsvExportService.exportBooks(servletResponse, books, "books");
     }
 }
