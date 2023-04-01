@@ -45,6 +45,16 @@ public class UserController {
         catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
+    @GetMapping("/getById")
+    private MessageResponse getById (@RequestParam long id) {
+        try {
+            if (userRepository.findById(id) == null) { return new MessageResponse("user not found", 404); }
+            User user = userRepository.findById(id);
+            return new MessageResponse("ok", 200, user);
+        }
+        catch (Exception e) { return new MessageResponse(e.toString(), 500); }
+    }
+
     @GetMapping("/getByToken")
     private MessageResponse getByToken (@RequestParam String token) {
         try {

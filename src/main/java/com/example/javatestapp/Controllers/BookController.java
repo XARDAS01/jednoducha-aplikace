@@ -28,7 +28,7 @@ public class BookController {
     @PostMapping("/add")
     private MessageResponse add (@RequestBody BookAddRequest bookAddRequest) {
         try {
-            if (tokenRepository.findByToken(bookAddRequest.getToken()) == null) { return new MessageResponse("token not found", 400); }
+            if (tokenRepository.findByToken(bookAddRequest.getToken()) == null) { return new MessageResponse("token not found", 404); }
             if (bookRepository.findByIsbn(bookAddRequest.getIsbn()) != null) { return new MessageResponse("book ISBN already exist", 400); }
             if (bookAddRequest.getIsbn() == null) { return new MessageResponse("book ISBN is null", 400); }
 
@@ -65,6 +65,14 @@ public class BookController {
             if (tokenRepository.findByToken(token).getUid().equals(bookRepository.findByName(name).getAuthorUid())) { return new MessageResponse("User not the same that book author", 400); }
 
             return new MessageResponse("ok", 200, bookRepository.findByName(name));
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
+    }
+
+    @GetMapping("/getById")
+    private MessageResponse getById (@RequestParam long id) {
+        try {
+            if (bookRepository.findById(id) == null) { return new MessageResponse("book not found", 404); }
+            return new MessageResponse("ok", 200, bookRepository.findById(id));
         } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
