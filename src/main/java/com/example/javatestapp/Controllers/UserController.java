@@ -1,6 +1,5 @@
 package com.example.javatestapp.Controllers;
 
-import com.example.javatestapp.Models.Token;
 import com.example.javatestapp.Models.User;
 import com.example.javatestapp.Payloads.Responses.MessageResponse;
 import com.example.javatestapp.Repositories.TokenRepository;

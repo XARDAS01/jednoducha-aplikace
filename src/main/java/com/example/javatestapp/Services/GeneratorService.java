@@ -1,11 +1,13 @@
 package com.example.javatestapp.Services;
 
 import com.google.common.hash.Hashing;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Random;
 
+@Service
 public class GeneratorService {
     public static String generateHash (String value) {
         return Hashing.sha256().hashString(value, StandardCharsets.UTF_8).toString();

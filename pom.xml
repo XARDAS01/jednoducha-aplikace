@@ -22,7 +22,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!--	Dependencies for DB connect	-->
+		<!-- Dependencies for DB connect	-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -33,25 +33,31 @@
 			<version>8.0.32</version>
 		</dependency>
 
-		<!--	Dependency provides a utility class for hashing	-->
+		<!-- Dependency provides a utility class for hashing	-->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>31.0.1-jre</version>
 		</dependency>
 
-		<!--	Dependency for working with JSON	-->
+		<!-- Dependency for working with JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.3</version>
 		</dependency>
 
-		<!--	Dependency for working with CSV	-->
+		<!-- Dependency for working with CSV -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>1.8</version>
+		</dependency>
+
+		<!-- Dependency for send email -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
 		<dependency>
