@@ -76,7 +76,7 @@ public class BookController {
         } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
-    @GetMapping("/getAllByUid")
+    @GetMapping("/getAllByToken")
     private MessageResponse getAllByUid (@RequestParam String token) {
         try {
             if (tokenRepository.findByToken(token) == null) { return new MessageResponse("token not found", 400); }
