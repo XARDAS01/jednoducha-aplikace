@@ -77,7 +77,7 @@ public class BookController {
     }
 
     @GetMapping("/getAllByToken")
-    private MessageResponse getAllByUid (@RequestParam String token) {
+    private MessageResponse getAllByToken (@RequestParam String token) {
         try {
             if (tokenRepository.findByToken(token) == null) { return new MessageResponse("token not found", 400); }
 
@@ -110,6 +110,13 @@ public class BookController {
     @RequestMapping(path = "/export")
     public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
         List<Book> books = bookRepository.findAll();
+        CsvExportService.exportBooks(servletResponse, books, "books");
+    }
+
+    @RequestMapping(path = "/exportMyBooks")
+    public void getAllMyBooksInCsv(@RequestParam String token, HttpServletResponse servletResponse) throws IOException {
+        Token userToken = tokenRepository.findByToken(token);
+        List<Book> books = bookRepository.findAllByAuthorUid(userToken.getUid());
         CsvExportService.exportBooks(servletResponse, books, "books");
     }
 }

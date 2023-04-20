@@ -44,7 +44,7 @@ public class TokenController {
     }
 
     @RequestMapping(path = "/export")
-    public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
+    public void getAllTokensInCsv(HttpServletResponse servletResponse) throws IOException {
         List<Token> tokens = tokenRepository.findAll();
         CsvExportService.exportTokens(servletResponse, tokens, "tokens");
     }

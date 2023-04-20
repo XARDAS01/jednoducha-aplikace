@@ -74,8 +74,8 @@ public class UserController {
     }
 
     @RequestMapping(path = "/export")
-    public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
+    public void getAllUsersInCsv(HttpServletResponse servletResponse) throws IOException {
         List<User> users = userRepository.findAll();
-        CsvExportService.exportUsers(servletResponse, users, "tokens");
+        CsvExportService.exportUsers(servletResponse, users, "users");
     }
 }
