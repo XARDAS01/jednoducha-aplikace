@@ -1,6 +1,9 @@
 package com.example.javatestapp.Controllers;
 
+import com.example.javatestapp.Models.Book;
 import com.example.javatestapp.Models.User;
+import com.example.javatestapp.Payloads.Requests.BookAddRequest;
+import com.example.javatestapp.Payloads.Requests.UserEditRequest;
 import com.example.javatestapp.Payloads.Responses.MessageResponse;
 import com.example.javatestapp.Repositories.TokenRepository;
 import com.example.javatestapp.Repositories.UserRepository;
@@ -71,6 +74,21 @@ public class UserController {
             return new MessageResponse("ok", 200, users);
         }
         catch (Exception e) { return new MessageResponse(e.toString(), 500); }
+    }
+
+    @PostMapping("/edit")
+    private MessageResponse edit (@RequestParam int userId, @RequestBody UserEditRequest userEditRequest) {
+        try {
+            User user = userRepository.findById(userId);
+            user.setName(userEditRequest.getName());
+            user.setSurname(userEditRequest.getSurname());
+            user.setEmail(userEditRequest.getEmail());
+            user.setLogin(userEditRequest.getLogin());
+            user.setPassword(userEditRequest.getPassword());
+            user.setUid(userEditRequest.getUid());
+            userRepository.save(user);
+            return new MessageResponse("ok", 201, user);
+        } catch (Exception e) { return new MessageResponse(e.toString(), 500); }
     }
 
     @RequestMapping(path = "/export")
