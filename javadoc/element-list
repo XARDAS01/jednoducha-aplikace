@@ -1,0 +1,9 @@
+com.example.javatestapp
+com.example.javatestapp.Configs
+com.example.javatestapp.Controllers
+com.example.javatestapp.Models
+com.example.javatestapp.Payloads.Requests
+com.example.javatestapp.Payloads.Responses
+com.example.javatestapp.Repositories
+com.example.javatestapp.Services
+com.example.javatestapp.Services.impl

@@ -13,6 +13,7 @@ public class Book {
     private Long id;
     @NotNull
     private String name, isbn, authorUid;
+
     private Date lastEditDate;
 
     public Book() { }

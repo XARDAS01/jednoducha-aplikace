@@ -3,6 +3,7 @@ package com.example.javatestapp.Controllers;
 import com.example.javatestapp.Models.Book;
 import com.example.javatestapp.Models.User;
 import com.example.javatestapp.Payloads.Requests.BookAddRequest;
+import com.example.javatestapp.Payloads.Requests.SendSimpleEmailRequest;
 import com.example.javatestapp.Payloads.Requests.UserEditRequest;
 import com.example.javatestapp.Payloads.Responses.MessageResponse;
 import com.example.javatestapp.Repositories.TokenRepository;
