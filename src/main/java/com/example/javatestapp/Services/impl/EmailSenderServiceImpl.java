@@ -1,7 +1,6 @@
 package com.example.javatestapp.Services.impl;
 
 import com.example.javatestapp.Models.AbstractEmailContext;
-import com.example.javatestapp.Models.Email;
 import com.example.javatestapp.Services.EmailSenderService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
